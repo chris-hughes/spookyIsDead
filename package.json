@@ -1,0 +1,23 @@
+{
+  "name": "spookyisdead",
+  "version": "1.0.0",
+  "description": "retiring spooky",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chris-hughes/spookyIsDead.git"
+  },
+  "author": "chris-hughes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chris-hughes/spookyIsDead/issues"
+  },
+  "homepage": "https://github.com/chris-hughes/spookyIsDead#readme",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "request": "^2.67.0"
+  }
+}
