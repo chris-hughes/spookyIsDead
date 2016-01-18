@@ -1,14 +1,22 @@
 var request = require("request"),
   cheerio = require("cheerio"),
-  url = "http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02888;
+  url = "http://www.check-mot.service.gov.uk/";
   
-request(url, function (error, response, body) {
-  if (!error) {
-    var $ = cheerio.load(body),
-      temperature = $("[data-variable='temperature'] .wx-value").html();
-      
-    console.log("It’s " + temperature + " degrees Fahrenheit.");
-  } else {
-    console.log("We’ve encountered an error: " + error);
-  }
-});
+
+request.post(	
+	{	url: "https://www.check-mot.service.gov.uk/",
+  	form: {registration:'OY55 JZA', manufacturer: 'NISSAN'}
+	},
+  function(err,httpResponse,body){
+  	if (err) {
+			console.log("We’ve encountered an error: " + error);
+		} else {
+
+			var $ = cheerio.load(body),
+	    
+	    title = $("h2").html();
+	    console.log(title);
+	    
+		}
+	}
+)
