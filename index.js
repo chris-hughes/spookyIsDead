@@ -1,6 +1,5 @@
 var request = require("request"),
-  cheerio = require("cheerio"),
-  url = "http://www.check-mot.service.gov.uk/";
+		cheerio = require("cheerio");
   
 
 request.post(	
@@ -23,10 +22,10 @@ request.post(
 			}
 
 			$('.testresult').each(function(test){
-				var mot = {};
+				var mot_test = {};
 
-				var id = test;
-				mot["mot_id"] = test;
+				// var id = test;              
+				// mot_test["MOTid"] = test;   // removed this (see notes in ./model/mot.js)
 
 				$(this).children().each(function(row){
 					var fields = [];
@@ -46,25 +45,24 @@ request.post(
 					var name = fields[0].replace(/\s+/g,'').replace(/[{()}]/g,'');
 					
 					if (fields.length==2){
-						mot[name] = fields[1];
+						mot_test[name] = fields[1];
 					} else if (fields.length>2){
 						fields.shift(); // removes the first value which is used as the name
 						fields = uniq(fields);
 						fields.shift(); // really bad, for some reason the first value is always ""
-						var reasons = fields.reduce(function(o,v,i){
-							o[i] = v;
-							return o;
-						}, {});
 
-						mot[name] = reasons;
+						mot_test[name] = fields;
 					}
 				});
-
-				chris.push(mot);
-				return mot;
-
+				chris.push(mot_test);
 			});
-			console.log(chris);
+
+			var mot = {};
+			mot["Regno"] = 'M99 LOT';
+			mot["Tests"] = chris;
+
+			console.log(mot);
+			return mot;
 		}
 	}	
 )
